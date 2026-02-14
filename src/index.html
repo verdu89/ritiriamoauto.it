@@ -3,462 +3,401 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>
-      Ritiriamo Auto | Valutazione e Rottamazione (Pratiche Incluse)
-    </title>
+    <title>Ritiriamo Auto | Acquisto o Rottamazione (Pratiche Incluse)</title>
     <meta
       name="description"
-      content="Valutazione auto in sede o via telefono. Rottamazione con pratiche incluse. Sedi a Orroli e Cagliari. Compila il form: ti richiamiamo."
+      content="Invia i dati e le foto del libretto: ti diciamo se possiamo comprarla oppure gestiamo la rottamazione con pratiche incluse. Sardegna: Orroli e Cagliari."
     />
+
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap (grid + form base) + Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="css/styles.css" />
   </head>
 
   <body>
-    <header class="header">
-      <div class="wrap header__inner">
-        <a class="logo" href="#top" aria-label="Home">
-          <span class="logo__mark">RA</span>
-          <span class="logo__text">ritiriamoauto.it</span>
+    <!-- NAV -->
+    <nav class="navx sticky-top">
+      <div class="container navx__inner">
+        <a class="navx__brand" href="#top" aria-label="Home">
+          <img src="img/logo.svg" alt="Ritiriamo Auto" class="navx__logoFull" />
         </a>
 
-        <nav class="menu">
-          <a href="#servizi">Servizi</a>
-          <a href="#come">Come operiamo</a>
-          <a href="#sedi">Dove siamo</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-
-        <a class="btn btn--primary" href="#form">Richiedi valutazione</a>
+        <div class="navx__actions">
+          <a class="btn btnx btnx--ghost d-none d-md-inline-flex" href="#come">
+            Come funziona
+          </a>
+          <a class="btn btnx btnx--cta" href="#form">
+            <i class="bi bi-send"></i> Invia i dati
+          </a>
+        </div>
       </div>
-    </header>
+    </nav>
 
     <main id="top">
       <!-- HERO -->
-      <section class="hero">
-        <div class="wrap hero__grid">
-          <div class="hero__copy">
-            <p class="eyebrow">
-              Sardegna • Orroli e Cagliari • Valutazione telefonica o in sede
-            </p>
+      <header class="heroClean" id="top">
+        <div class="container">
+          <div class="heroClean__wrap">
+            <div class="heroClean__kicker">
+              <i class="bi bi-geo-alt"></i>
+              Sardegna • Orroli / Cagliari • Valutazione a distanza o in sede
+            </div>
 
-            <h1>
-              Richiedi una valutazione.<br />
-              <span class="accent">Ti richiamiamo noi.</span>
+            <h1 class="heroClean__h1">
+              Valutazione auto
+              <span class="heroClean__accent">chiara</span>.<br />
+              Possiamo <span class="heroClean__accent">comprarla</span>,
+              <span class="heroClean__accent">rottamarla</span> (pratiche
+              incluse) oppure no.
             </h1>
 
-            <p class="lead">
-              Compila il form in <strong>30 secondi</strong>. Confermiamo i
-              dettagli e ti diciamo subito <strong>cosa fare</strong> (telefono
-              o appuntamento).
+            <br /><br />
+
+            <p class="heroClean__lead">
+              Invia i dati dell’auto e, se vuoi, una foto del libretto. Ti
+              rispondiamo con un esito concreto: proposta, rottamazione o esito
+              negativo.
             </p>
 
-            <div class="hero__pills" aria-label="Punti chiave">
-              <span class="pill">✅ Anche incidentate / non marcianti</span>
-              <span class="pill">🧾 Rottamazione con pratiche incluse</span>
-              <span class="pill">📍 Sedi reali in Sardegna</span>
+            <div class="heroClean__cta">
+              <a class="btn btnx btnx--cta btnx--lg" href="#form">
+                <i class="bi bi-send"></i> Invia i dati (30 sec)
+              </a>
+              <a class="heroClean__link" href="#sedi">
+                <i class="bi bi-map"></i> Vedi le sedi
+              </a>
             </div>
 
-            <div class="hero__cta">
-              <a class="btn btn--primary btn--lg" href="#form"
-                >Richiedi valutazione (30 sec)</a
+            <div class="heroClean__trust">
+              <span><i class="bi bi-shield-check"></i> Solo su richiesta</span>
+              <span><i class="bi bi-person-check"></i> Valutazione umana</span>
+              <span
+                ><i class="bi bi-camera"></i> Foto libretto consigliate</span
               >
-              <a class="btn btn--ghost btn--lg" href="#come">Come funziona</a>
             </div>
+          </div>
+        </div>
+      </header>
 
-            <p class="note">
-              Nessuno spam. Solo ricontatto sulla tua richiesta.
+      <!-- CASI -->
+      <section class="sectionX" id="come">
+        <div class="container">
+          <div class="sectionX__head">
+            <h2 class="sectionX__title">In quali casi ti aiutiamo</h2>
+            <p class="sectionX__sub">
+              Se ti riconosci in uno di questi, compila: è il nostro pane.
             </p>
           </div>
 
-          <aside class="hero__side" aria-label="Riepilogo">
-            <div class="proof">
-              <div class="proof__title">Cosa succede dopo</div>
-
-              <div class="steps">
-                <div class="step">
-                  <div class="step__n">1</div>
-                  <div class="step__c">
-                    <div class="step__t">Richiesta ricevuta</div>
-                    <div class="step__d">
-                      Verifichiamo marca/modello, stato e sede.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="step">
-                  <div class="step__n">2</div>
-                  <div class="step__c">
-                    <div class="step__t">Ti richiamiamo</div>
-                    <div class="step__d">
-                      Confermiamo i dettagli e scegliamo il percorso.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="step">
-                  <div class="step__n">3</div>
-                  <div class="step__c">
-                    <div class="step__t">Sede o telefono</div>
-                    <div class="step__d">
-                      Valutazione o rottamazione con pratiche incluse.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="proof__bar">
-                <span class="proof__dot"></span>
-                <span>Tempo stimato: <strong>30–40 sec</strong></span>
-              </div>
+          <div class="gridX">
+            <div class="cardX">
+              <i class="bi bi-exclamation-triangle"></i><span>Incidentata</span>
             </div>
-          </aside>
-        </div>
-      </section>
-
-      <!-- SERVIZI -->
-      <section class="section" id="servizi">
-        <div class="wrap">
-          <h2>Servizi</h2>
-          <p class="sub">Scegli cosa ti serve: al resto pensiamo noi.</p>
-
-          <div class="services">
-            <div class="service">
-              <h3>Valutazione / vendita</h3>
-              <p>
-                Prima valutazione <strong>telefonica</strong> oppure
-                direttamente <strong>in sede</strong>. Ti guidiamo sul passo
-                successivo.
-              </p>
-              <div class="service__meta">
-                ✅ In sede Orroli / Cagliari • ✅ anche incidentate/non
-                marcianti
-              </div>
+            <div class="cardX">
+              <i class="bi bi-cone-striped"></i
+              ><span>Non marciante / ferma</span>
             </div>
-
-            <div class="service">
-              <h3>Rottamazione</h3>
-              <p>
-                Gestiamo la rottamazione e le <strong>pratiche incluse</strong>.
-                Seleziona “Da rottamare” nel form e ti diciamo cosa serve.
-              </p>
-              <div class="service__meta">
-                🧾 pratiche incluse • 🛠️ anche auto ferme/non marcianti
-              </div>
+            <div class="cardX">
+              <i class="bi bi-calendar-x"></i><span>Ferma da mesi/anni</span>
             </div>
-          </div>
-
-          <div class="bar">
-            <div>
-              <strong>Importante:</strong> al momento lavoriamo
-              <strong>in sede</strong> o via <strong>telefono</strong>.
-              (Domicilio in arrivo.)
+            <div class="cardX">
+              <i class="bi bi-speedometer2"></i><span>Tanti km</span>
             </div>
-            <a class="btn btn--primary" href="#form">Compila il form</a>
+            <div class="cardX">
+              <i class="bi bi-receipt"></i><span>Da rottamare</span>
+            </div>
+            <div class="cardX">
+              <i class="bi bi-arrow-repeat"></i><span>Cambio auto</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- COME OPERIAMO -->
-      <section class="section section--alt" id="come">
-        <div class="wrap">
-          <h2>Come operiamo</h2>
-          <p class="sub">Pochi passaggi, chiari.</p>
+      <!-- ESITI -->
+      <section class="sectionX sectionX--alt" id="esiti">
+        <div class="container">
+          <div class="sectionX__head">
+            <h2 class="sectionX__title">Tre esiti possibili</h2>
+            <p class="sectionX__sub">
+              Compili una volta: poi ti diciamo la strada giusta, senza giri.
+            </p>
+          </div>
 
-          <div class="how">
-            <div class="how__row">
-              <div class="how__n">1</div>
-              <div class="how__c">
-                <div class="how__t">Compili il form</div>
-                <div class="how__d">
-                  Dati essenziali: contatto + auto + stato + sede preferita.
+          <div class="row g-3">
+            <div class="col-lg-4">
+              <div class="panelCard">
+                <div class="panelCard__icon">
+                  <i class="bi bi-currency-euro"></i>
                 </div>
+                <h3 class="panelCard__t">Possiamo comprarla</h3>
+                <p class="panelCard__d">
+                  Se l’auto rientra nei nostri criteri, ti facciamo una proposta
+                  reale.
+                </p>
               </div>
             </div>
-
-            <div class="how__row">
-              <div class="how__n">2</div>
-              <div class="how__c">
-                <div class="how__t">Ti richiamiamo</div>
-                <div class="how__d">
-                  Confermiamo i dettagli e scegliamo: valutazione telefonica o
-                  appuntamento in sede.
+            <div class="col-lg-4">
+              <div class="panelCard">
+                <div class="panelCard__icon">
+                  <i class="bi bi-receipt-cutoff"></i>
                 </div>
+                <h3 class="panelCard__t">È da rottamare</h3>
+                <p class="panelCard__d">
+                  Gestiamo rottamazione con pratiche incluse e ti diciamo cosa
+                  serve.
+                </p>
               </div>
             </div>
-
-            <div class="how__row">
-              <div class="how__n">3</div>
-              <div class="how__c">
-                <div class="how__t">Valutazione / rottamazione in sede</div>
-                <div class="how__d">
-                  Orroli o Cagliari. Per rottamazione:
-                  <strong>pratiche incluse</strong>.
+            <div class="col-lg-4">
+              <div class="panelCard">
+                <div class="panelCard__icon">
+                  <i class="bi bi-x-circle"></i>
                 </div>
+                <h3 class="panelCard__t">Non ci interessa</h3>
+                <p class="panelCard__d">
+                  Te lo diciamo chiaramente, senza perdite di tempo.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- FORM -->
-      <section class="section" id="form">
-        <div class="wrap">
-          <div class="formhead">
-            <div>
-              <h2>Richiedi valutazione</h2>
-              <p class="sub">
-                Ti richiamiamo per confermare i dettagli e dirti il passo
-                successivo.
-              </p>
-            </div>
-            <div class="formhead__meta">
-              ⏱ 30–40 sec • 🔒 solo per ricontatto
-            </div>
+      <!-- FORM CENTRALE -->
+      <section class="formC" id="form">
+        <div class="container">
+          <div class="formC__head">
+            <h2 class="formC__title">Invia i dati dell’auto</h2>
+            <p class="formC__sub">
+              Ti rispondiamo con un esito concreto: proposta d’acquisto,
+              rottamazione (pratiche incluse) oppure esito negativo.
+            </p>
           </div>
 
-          <div class="formbox">
-            <form id="leadForm" class="form">
-              <div class="row2">
-                <label
-                  >Nome e Cognome
-                  <input
-                    name="name"
-                    required
-                    autocomplete="name"
-                    placeholder="Es. Mario Rossi"
-                  />
-                </label>
-                <label
-                  >Telefono
-                  <input
-                    name="phone"
-                    required
-                    inputmode="tel"
-                    autocomplete="tel"
-                    placeholder="Es. 3xx xxx xxxx"
-                  />
-                </label>
+          <form class="formC__box" id="leadForm" novalidate>
+            <div class="fRow">
+              <label>Nome</label>
+              <input name="name" required placeholder="Mario Rossi" />
+            </div>
+
+            <div class="fRow">
+              <label>Telefono / WhatsApp</label>
+              <input name="phone" required placeholder="3xx xxx xxxx" />
+            </div>
+
+            <div class="fRow">
+              <label>Città / Provincia</label>
+              <input name="city" required placeholder="Cagliari (CA)" />
+            </div>
+
+            <div class="fRow">
+              <label>Auto (marca + modello)</label>
+              <input name="car" required placeholder="Fiat Panda" />
+            </div>
+
+            <div class="fRow">
+              <label>Stato</label>
+              <select name="condition" required>
+                <option value="">Seleziona</option>
+                <option>Normale</option>
+                <option>Incidentata</option>
+                <option>Non marciante</option>
+                <option>Da rottamare</option>
+              </select>
+            </div>
+
+            <div class="fUpload">
+              <span class="fUpload__label">Foto libretto (facoltativo)</span>
+              <label class="fUpload__area">
+                <input type="file" name="libretto" accept="image/*" />
+                <span><i class="bi bi-camera"></i> Carica foto</span>
+              </label>
+            </div>
+
+            <details class="fMore">
+              <summary>Dettagli opzionali</summary>
+
+              <div class="fRow">
+                <label>Anno</label>
+                <input name="year" placeholder="2012" />
               </div>
 
-              <div class="row2">
-                <label
-                  >Città / Provincia
-                  <input name="city" required placeholder="Es. Cagliari (CA)" />
-                </label>
-                <label
-                  >Auto (Marca + Modello)
-                  <input name="car" required placeholder="Es. Fiat Panda" />
-                </label>
+              <div class="fRow">
+                <label>Km</label>
+                <input name="km" placeholder="120000" />
               </div>
 
-              <div class="row2">
-                <label
-                  >Anno
-                  <input
-                    name="year"
-                    required
-                    inputmode="numeric"
-                    placeholder="Es. 2016"
-                  />
-                </label>
-                <label
-                  >Km
-                  <input
-                    name="km"
-                    required
-                    inputmode="numeric"
-                    placeholder="Es. 120000"
-                  />
-                </label>
+              <div class="fRow">
+                <label>Note</label>
+                <textarea name="notes" rows="3"></textarea>
               </div>
+            </details>
 
-              <div class="row1">
-                <label
-                  >Stato dell’auto
-                  <select name="condition" required>
-                    <option value="">Seleziona</option>
-                    <option>Normale</option>
-                    <option>Incidentata</option>
-                    <option>Non marciante</option>
-                    <option>Da rottamare</option>
-                  </select>
-                </label>
-              </div>
+            <label class="fPrivacy">
+              <input type="checkbox" required />
+              <span
+                >Acconsento al trattamento dati per gestire la richiesta</span
+              >
+            </label>
 
-              <div class="row1">
-                <div class="lab">Servizio richiesto</div>
-                <div class="rad">
-                  <label
-                    ><input
-                      type="radio"
-                      name="service"
-                      value="Valutazione"
-                      required
-                    />
-                    Valutazione / vendita</label
-                  >
-                  <label
-                    ><input type="radio" name="service" value="Rottamazione" />
-                    Rottamazione (pratiche incluse)</label
-                  >
-                </div>
-              </div>
+            <button class="btn btnx btnx--cta btnx--lg w-100" type="submit">
+              <i class="bi bi-send"></i> Invia richiesta
+            </button>
 
-              <div class="row1">
-                <div class="lab">Preferenza</div>
-                <div class="rad">
-                  <label
-                    ><input
-                      type="radio"
-                      name="mode"
-                      value="Telefono"
-                      required
-                    />
-                    Valutazione telefonica</label
-                  >
-                  <label
-                    ><input type="radio" name="mode" value="Sede" /> In
-                    sede</label
-                  >
-                </div>
-              </div>
-
-              <div class="row1">
-                <label
-                  >Sede preferita
-                  <select name="location">
-                    <option>Indifferente</option>
-                    <option>Orroli</option>
-                    <option>Cagliari</option>
-                  </select>
-                </label>
-              </div>
-
-              <div class="row1">
-                <label
-                  >Note (opzionale)
-                  <textarea
-                    name="notes"
-                    placeholder="Es. documenti mancanti, auto ferma da anni, revisione scaduta..."
-                  ></textarea>
-                </label>
-              </div>
-
-              <div class="row1 consent">
-                <label class="consent__lbl">
-                  <input type="checkbox" id="privacy" required />
-                  <span
-                    >Acconsento al trattamento dei dati per essere ricontattato
-                    sulla richiesta.</span
-                  >
-                </label>
-              </div>
-
-              <div class="row1 actions">
-                <button class="btn btn--primary btn--wide" type="submit">
-                  Invia richiesta
-                </button>
-                <div class="tiny">
-                  Dopo l’invio: ti richiamiamo → telefono o appuntamento in sede
-                  (Orroli/Cagliari).
-                </div>
-              </div>
-
-              <div class="ok" id="ok" style="display: none">
-                Richiesta inviata ✅ Ti contatteremo a breve.
-              </div>
-            </form>
-          </div>
+            <div class="fFine">Solo su richiesta • Nessuno spam</div>
+          </form>
         </div>
       </section>
 
       <!-- SEDI -->
-      <section class="section section--alt" id="sedi">
-        <div class="wrap">
-          <h2>Dove siamo</h2>
-          <p class="sub">
-            Puoi portare l’auto in officina per una valutazione rapida o dopo la
-            chiamata.
-          </p>
+      <section class="sectionX sectionX--alt" id="sedi">
+        <div class="container">
+          <div class="sectionX__head">
+            <h2 class="sectionX__title">Dove siamo</h2>
+            <p class="sectionX__sub">
+              Due sedi reali in Sardegna. Se vuoi, puoi passare in sede dopo il
+              primo contatto.
+            </p>
+          </div>
 
-          <div class="places">
-            <div class="place">
-              <h3>Officina Orroli</h3>
-              <p>Apri la sede su Google Maps.</p>
-              <a
-                class="btn btn--primary"
-                target="_blank"
-                href="https://maps.app.goo.gl/VKLPyn2Htdz7H9ya6"
-                >Apri su Google Maps</a
-              >
+          <div class="row g-3">
+            <!-- ORROLI -->
+            <div class="col-lg-6">
+              <div class="mapCard">
+                <a
+                  class="mapCard__map"
+                  target="_blank"
+                  href="https://maps.app.goo.gl/VKLPyn2Htdz7H9ya6"
+                  aria-label="Apri Orroli su Google Maps"
+                >
+                  <iframe
+                    class="mapCard__frame"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps?q=Orroli%20Sardegna&output=embed"
+                    title="Mappa Orroli"
+                  ></iframe>
+                  <div class="mapCard__overlay">
+                    <div class="mapCard__pin">
+                      <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <div class="mapCard__open">
+                      <i class="bi bi-map"></i> Apri su Google Maps
+                    </div>
+                  </div>
+                </a>
+
+                <div class="mapCard__body">
+                  <div>
+                    <div class="mapCard__title">Orroli</div>
+                    <div class="mapCard__sub">
+                      Sede operativa • Su appuntamento
+                    </div>
+                  </div>
+                  <a
+                    class="btn btnx btnx--ghost"
+                    target="_blank"
+                    href="https://maps.app.goo.gl/VKLPyn2Htdz7H9ya6"
+                  >
+                    <i class="bi bi-sign-turn-right"></i> Indicazioni
+                  </a>
+                </div>
+              </div>
             </div>
 
-            <div class="place">
-              <h3>Officina Cagliari</h3>
-              <p>
-                Via Pola – Cagliari (placeholder, lo aggiorniamo quando vuoi).
-              </p>
-              <a
-                class="btn btn--primary"
-                target="_blank"
-                href="https://www.google.com/maps/search/?api=1&query=Via+Pola+Cagliari"
-                >Apri su Google Maps</a
-              >
+            <!-- CAGLIARI -->
+            <div class="col-lg-6">
+              <div class="mapCard">
+                <a
+                  class="mapCard__map"
+                  target="_blank"
+                  href="https://www.google.com/maps/search/?api=1&query=Cagliari"
+                  aria-label="Apri Cagliari su Google Maps"
+                >
+                  <iframe
+                    class="mapCard__frame"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps?q=Cagliari%20Sardegna&output=embed"
+                    title="Mappa Cagliari"
+                  ></iframe>
+                  <div class="mapCard__overlay">
+                    <div class="mapCard__pin">
+                      <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <div class="mapCard__open">
+                      <i class="bi bi-map"></i> Apri su Google Maps
+                    </div>
+                  </div>
+                </a>
+
+                <div class="mapCard__body">
+                  <div>
+                    <div class="mapCard__title">Cagliari</div>
+                    <div class="mapCard__sub">
+                      Sede • Indirizzo in aggiornamento
+                    </div>
+                  </div>
+                  <a
+                    class="btn btnx btnx--ghost"
+                    target="_blank"
+                    href="https://www.google.com/maps/search/?api=1&query=Cagliari"
+                  >
+                    <i class="bi bi-sign-turn-right"></i> Indicazioni
+                  </a>
+                </div>
+              </div>
             </div>
+          </div>
+
+          <div class="mapNote">
+            <i class="bi bi-info-circle"></i>
+            Preferisci distanza? Invia i dati e le foto del libretto: ti
+            rispondiamo senza farti muovere.
           </div>
         </div>
       </section>
 
-      <!-- FAQ -->
-      <section class="section" id="faq">
-        <div class="wrap">
-          <h2>FAQ</h2>
-
-          <div class="faq">
-            <details open>
-              <summary>Rottamate anche auto da rottamare?</summary>
-              <p>
-                Sì. Seleziona “Da rottamare” nel form. Gestiamo anche le
-                pratiche e ti guidiamo sui documenti necessari.
-              </p>
-            </details>
-            <details>
-              <summary>La mia auto non è marciante: posso contattarvi?</summary>
-              <p>
-                Certo. Seleziona “Non marciante” o “Da rottamare” e scrivi i
-                dettagli nelle note: ti richiamiamo e ti diciamo cosa fare.
-              </p>
-            </details>
-            <details>
-              <summary>Fate valutazione a domicilio?</summary>
-              <p>
-                Al momento lavoriamo in sede o via telefono. In futuro
-                estenderemo anche a domicilio.
-              </p>
-            </details>
-            <details>
-              <summary>Posso scegliere la sede?</summary>
-              <p>
-                Sì: Orroli o Cagliari. Puoi indicarlo nel form (o scegliere
-                “Indifferente”).
-              </p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <footer class="footer">
-        <div class="wrap footer__inner">
-          <div class="muted small">© <span id="y"></span> ritiriamoauto.it</div>
-          <div class="footer__links">
-            <a class="muted small" href="#">Privacy</a>
-            <a class="muted small" href="#">Cookie</a>
+      <!-- FOOTER -->
+      <footer class="footX">
+        <div class="container footX__inner">
+          <div class="footX__copy">© <span id="y"></span> Ritiriamo Auto</div>
+          <div class="footX__links">
+            <a href="privacy.html">Privacy</a>
+            <a href="cookie.html">Cookie</a>
           </div>
         </div>
       </footer>
+
+      <!-- Mobile CTA -->
+      <div class="mcta d-lg-none">
+        <a class="btn btnx btnx--cta w-100" href="#form">
+          <i class="bi bi-send"></i> Invia i dati
+        </a>
+      </div>
     </main>
 
-    <script src="js/main.js"></script>
+    <script>
+      document.getElementById("y").textContent = new Date().getFullYear();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
