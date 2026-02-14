@@ -1,0 +1,29 @@
+{
+  "name": "ritiriamoauto.it",
+  "version": "1.0.0",
+  "description": "Landing ritiro auto",
+  "private": true,
+  "scripts": {
+    "dev": "gulp dev",
+    "build": "gulp build",
+    "clean": "gulp clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/verdu89/ritiriamoauto.it.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^3.0.4",
+    "del": "^8.0.1",
+    "gulp": "^5.0.1",
+    "gulp-cli": "^3.1.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-plumber": "^1.2.1",
+    "gulp-replace": "^1.1.4",
+    "gulp-terser": "^2.1.0",
+    "gulp-webp": "^5.1.0"
+  }
+}
