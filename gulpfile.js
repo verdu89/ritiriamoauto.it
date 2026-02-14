@@ -4,7 +4,6 @@ const plumber = require("gulp-plumber");
 const htmlmin = require("gulp-htmlmin");
 const csso = require("gulp-csso");
 const terser = require("gulp-terser");
-const webp = require("gulp-webp");
 const browserSync = require("browser-sync").create();
 
 const paths = {
@@ -52,12 +51,15 @@ function img() {
     .pipe(browserSync.stream());
 }
 
-// Facoltativo: genera webp (non rompe) quando vuoi
 function imgWebp() {
-  return src(paths.imgToWebp)
-    .pipe(plumber())
-    .pipe(webp({ quality: 82 }))
-    .pipe(dest("dist/img"));
+  return import("gulp-webp").then((m) => {
+    const webp = m.default || m;
+
+    return src(paths.imgToWebp)
+      .pipe(plumber())
+      .pipe(webp({ quality: 82 }))
+      .pipe(dest("dist/img"));
+  });
 }
 
 function other() {
