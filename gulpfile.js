@@ -43,9 +43,8 @@ function js() {
     .pipe(browserSync.stream());
 }
 
-// Per ora: copia immagini (zero ottimizzazione) -> niente errori ESM
 function img() {
-  return src(paths.imgAll)
+  return src(paths.imgAll, { allowEmpty: true })
     .pipe(plumber())
     .pipe(dest("dist/img"))
     .pipe(browserSync.stream());
@@ -55,7 +54,7 @@ function imgWebp() {
   return import("gulp-webp").then((m) => {
     const webp = m.default || m;
 
-    return src(paths.imgToWebp)
+    return src(paths.imgToWebp, { allowEmpty: true })
       .pipe(plumber())
       .pipe(webp({ quality: 82 }))
       .pipe(dest("dist/img"));
