@@ -45,31 +45,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /** @type {File[]} */
-  let selectedFiles = [];
+  /** @type {{file: File, url: string}[]} */
+  let selected = [];
 
   function updateUploaderUI() {
     if (!uplGrid || !uplCount || !uplClear) return;
 
     uplGrid.innerHTML = "";
-    uplCount.textContent = `${selectedFiles.length} foto`;
-    uplClear.disabled = selectedFiles.length === 0;
+    uplCount.textContent = `${selected.length} foto`;
+    uplClear.disabled = selected.length === 0;
 
     if (uplHint) {
       uplHint.innerHTML =
-        selectedFiles.length > 0
-          ? `<i class="bi bi-check2-circle"></i> ${selectedFiles.length} foto selezionate`
+        selected.length > 0
+          ? `<i class="bi bi-check2-circle"></i> ${selected.length} foto selezionate`
           : `<i class="bi bi-camera"></i> Scatta o scegli foto (anche più di una)`;
     }
 
-    selectedFiles.forEach((file, idx) => {
-      const url = URL.createObjectURL(file);
-
-      const item = document.createElement("div");
-      item.className = "uplItem";
+    selected.forEach((item, idx) => {
+      const wrap = document.createElement("div");
+      wrap.className = "uplItem";
 
       const img = document.createElement("img");
-      img.src = url;
+      img.src = item.url;
       img.alt = `Foto ${idx + 1}`;
 
       const badge = document.createElement("div");
@@ -81,23 +79,27 @@ document.addEventListener("DOMContentLoaded", () => {
       rm.className = "uplRm";
       rm.innerHTML = '<i class="bi bi-x-lg"></i>';
       rm.addEventListener("click", () => {
-        // revoke URL per evitare leak
-        URL.revokeObjectURL(url);
-        selectedFiles = selectedFiles.filter((_, i) => i !== idx);
+        try {
+          URL.revokeObjectURL(item.url);
+        } catch {}
+        selected = selected.filter((_, i) => i !== idx);
         updateUploaderUI();
       });
 
-      item.appendChild(img);
-      item.appendChild(badge);
-      item.appendChild(rm);
-      uplGrid.appendChild(item);
+      wrap.appendChild(img);
+      wrap.appendChild(badge);
+      wrap.appendChild(rm);
+      uplGrid.appendChild(wrap);
     });
   }
 
   function resetUploader() {
-    // le ObjectURL vanno revocate (quelle create sopra)
-    // NB: qui non abbiamo i singoli url, quindi puliamo la UI e basta
-    selectedFiles = [];
+    selected.forEach((it) => {
+      try {
+        URL.revokeObjectURL(it.url);
+      } catch {}
+    });
+    selected = [];
     if (fileInput) fileInput.value = "";
     updateUploaderUI();
   }
@@ -107,29 +109,38 @@ document.addEventListener("DOMContentLoaded", () => {
       const files = Array.from(fileInput.files || []);
       if (!files.length) return;
 
-      // aggiunge (non sostituisce) — l’utente può selezionare più volte
-      selectedFiles = selectedFiles.concat(files);
+      // aggiunge (non sostituisce)
+      const newItems = files.map((f) => ({
+        file: f,
+        url: URL.createObjectURL(f),
+      }));
+      selected = selected.concat(newItems);
 
-      // limite foto per evitare payload enormi
+      // limite foto (evita payload enormi)
       const MAX_FILES = 6;
-      if (selectedFiles.length > MAX_FILES) {
-        selectedFiles = selectedFiles.slice(0, MAX_FILES);
+      if (selected.length > MAX_FILES) {
+        // revoca quelle in eccesso
+        selected.slice(MAX_FILES).forEach((it) => {
+          try {
+            URL.revokeObjectURL(it.url);
+          } catch {}
+        });
+        selected = selected.slice(0, MAX_FILES);
         alert(`Massimo ${MAX_FILES} foto.`);
       }
 
-      fileInput.value = ""; // permette di selezionare di nuovo gli stessi file
+      fileInput.value = ""; // permette di scegliere di nuovo gli stessi file
       updateUploaderUI();
     });
   }
 
   if (uplClear) uplClear.addEventListener("click", resetUploader);
-
   updateUploaderUI();
 
   // timestamp anti-bot
   form.dataset.t0 = String(Date.now());
 
-  // blocco anti-doppio submit (double tap / enter / lag)
+  // blocco anti-doppio submit
   let isSubmitting = false;
 
   // evidenzia campi invalidi (UX)
@@ -153,6 +164,19 @@ document.addEventListener("DOMContentLoaded", () => {
     return s.replace(/[^\d+]/g, "");
   }
 
+  function slug(s) {
+    return String(s || "")
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, "-")
+      .replace(/[^a-z0-9\-]/g, "")
+      .slice(0, 40);
+  }
+
+  function pad2(n) {
+    return String(n).padStart(2, "0");
+  }
+
   function fileToBase64(file) {
     return new Promise((resolve, reject) => {
       const r = new FileReader();
@@ -166,6 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const maxW = opts.maxW || 1600;
     const maxH = opts.maxH || 1600;
     const quality = opts.quality || 0.78;
+    const outName = opts.outName || "foto.jpg";
 
     if (!file.type || !file.type.startsWith("image/")) return file;
 
@@ -192,11 +217,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const outDataUrl = canvas.toDataURL("image/jpeg", quality);
     const blob = await (await fetch(outDataUrl)).blob();
-    return new File([blob], "libretto.jpg", { type: "image/jpeg" });
+    return new File([blob], outName, { type: "image/jpeg" });
   }
 
-  // ---------- Queue (no-duplicate) ----------
-  const QUEUE_KEY = "ritiriamoauto_lead_queue_v2";
+  // ---------- Queue (solo senza foto) ----------
+  const QUEUE_KEY = "ritiriamoauto_lead_queue_v3";
 
   function loadQueue() {
     try {
@@ -231,18 +256,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const body = JSON.stringify(payload);
     const bytes = new Blob([body]).size;
 
-    // Soglia prudente: keepalive / sendBeacon con payload grandi spesso falliscono
     const SMALL_LIMIT = 55_000; // ~55KB
-
     const canKeepalive = bytes <= SMALL_LIMIT;
     const hasPhotos = !!(payload.libretti && payload.libretti.length);
 
-    // 1) FETCH (sempre prima scelta)
     try {
       await fetch(ENDPOINT, {
         method: "POST",
         mode: "no-cors",
-        // keepalive SOLO se piccolo e senza foto (o comunque piccolo)
         keepalive: canKeepalive && !hasPhotos,
         headers: { "Content-Type": "text/plain;charset=utf-8" },
         body,
@@ -252,7 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.warn("fetch fallito", e, { bytes, canKeepalive, hasPhotos });
     }
 
-    // 2) FALLBACK sendBeacon SOLO se payload piccolo
+    // fallback beacon SOLO se piccolo
     if (canKeepalive) {
       try {
         const ok = navigator.sendBeacon(
@@ -336,6 +357,12 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    const source =
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1"
+        ? "ritiriamoauto.it"
+        : window.location.hostname.replace(/^www\./, "").split(":")[0];
+
     const payload = {
       name: String(fd.get("name") || "").trim(),
       phone,
@@ -346,11 +373,7 @@ document.addEventListener("DOMContentLoaded", () => {
       km: String(fd.get("km") || "").trim(),
       notes: String(fd.get("notes") || "").trim(),
       userAgent: navigator.userAgent,
-      source:
-        window.location.hostname === "localhost" ||
-        window.location.hostname === "127.0.0.1"
-          ? "ritiriamoauto.it"
-          : window.location.hostname.replace(/^www\./, "").split(":")[0],
+      source,
       t0: String(t0 || ""),
       website: "",
     };
@@ -362,18 +385,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      // foto opzionali (multi): comprimi + base64
-      if (selectedFiles.length > 0) {
-        const MAX_EACH = 2_200_000; // dopo compressione
+      // ---- FOTO: rinomina + comprimi + base64 ----
+      if (selected.length > 0) {
+        const MAX_EACH = 2_200_000; // post-compressione
         const photos = [];
 
-        for (let i = 0; i < selectedFiles.length; i++) {
-          const file = selectedFiles[i];
+        const ts = new Date().toISOString().replace(/[:.]/g, "-");
+        const prefix = [
+          slug(fd.get("name")),
+          slug(fd.get("car")),
+          slug(fd.get("city")),
+          ts,
+        ]
+          .filter(Boolean)
+          .join("_");
+
+        for (let i = 0; i < selected.length; i++) {
+          const file = selected[i].file;
+          if (!(file instanceof File) || file.size <= 0) continue;
+
+          const outName = `${prefix}_foto_${pad2(i + 1)}.jpg`;
 
           const compressed = await compressImage(file, {
             maxW: 1600,
             maxH: 1600,
             quality: 0.78,
+            outName,
           });
 
           if (compressed.size > MAX_EACH) {
@@ -385,28 +422,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
           photos.push({
             base64: await fileToBase64(compressed),
-            filename: compressed.name || `libretto_${i + 1}.jpg`,
+            filename: compressed.name, // ✅ rinominata
             mimeType: compressed.type || "image/jpeg",
           });
         }
 
-        // ✅ array di foto
         payload.libretti = photos;
       }
 
-      // enqueue + invio singolo (no doppioni)
       const hasPhotos = !!(payload.libretti && payload.libretti.length);
 
-      // ✅ Queue solo se NON ci sono foto (evita localStorage pieno)
+      // ✅ Queue solo se NON ci sono foto
       let queuedId = null;
       if (!hasPhotos) queuedId = enqueue(payload);
 
       const ok = await sendPayload(payload);
 
-      // se era in coda e l’invio è andato ok, rimuovi
       if (ok && queuedId) removeFromQueue(queuedId);
 
-      // se NON ok e c'erano foto, avvisa (non possiamo accodare base64)
+      // se fallisce e ci sono foto -> non possiamo accodare
       if (!ok && hasPhotos) {
         throw new Error("upload-failed");
       }
@@ -432,6 +466,7 @@ document.addEventListener("DOMContentLoaded", () => {
       flushQueue();
     } catch (err) {
       console.error("Errore invio:", err);
+
       if (btn) {
         btn.innerHTML = '<i class="bi bi-x"></i> Errore: riprova';
         btn.disabled = false;
@@ -439,9 +474,11 @@ document.addEventListener("DOMContentLoaded", () => {
           btn.innerHTML = prev || '<i class="bi bi-send"></i> Invia richiesta';
         }, 2000);
       }
-      if (msg)
+
+      if (msg) {
         msg.textContent =
           "Invio non riuscito. Riprova (meglio con rete stabile). Se non va, invia meno foto o una foto più leggera.";
+      }
     } finally {
       isSubmitting = false;
     }
