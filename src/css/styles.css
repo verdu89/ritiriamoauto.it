@@ -606,3 +606,145 @@ body {
     padding-bottom: 0;
   }
 }
+.docs .cardX p {
+  opacity: 0.9;
+}
+
+.zones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.chip {
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  background: #fff;
+}
+
+.trust p {
+  font-size: 1.05rem;
+  margin: 12px 0;
+}
+
+.trust .highlight {
+  font-weight: 600;
+}
+
+.small {
+  font-size: 0.9rem;
+}
+.faqList {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.faqAcc .accordion-item {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  margin: 12px 0;
+  background: #fff;
+}
+
+.faqAcc .accordion-button {
+  font-weight: 600;
+  padding: 18px 18px;
+  background: #fff;
+  box-shadow: none;
+}
+
+.faqAcc .accordion-button:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.faqAcc .accordion-button:not(.collapsed) {
+  background: #fff;
+}
+
+.faqAcc .accordion-body {
+  padding: 0 18px 18px;
+  opacity: 0.92;
+}
+
+.faqAcc .accordion-button::after {
+  opacity: 0.65;
+}
+/* -------- Multi uploader thumbnails -------- */
+.uplBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+.uplCount {
+  font-weight: 850;
+  color: rgba(11, 18, 32, 0.72);
+}
+.uplClear {
+  padding: 0.55rem 0.8rem;
+  border-radius: 14px;
+}
+
+.uplGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+@media (max-width: 576px) {
+  .uplGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.uplItem {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  aspect-ratio: 1 / 1;
+}
+.uplItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.uplRm {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.88);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.uplRm i {
+  opacity: 0.85;
+}
+
+.uplBadge {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-weight: 850;
+  font-size: 12px;
+}
