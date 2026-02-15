@@ -355,20 +355,46 @@
             <div class="fUpload" id="uplWrap">
               <span class="fUpload__label">Foto libretto (facoltativo)</span>
 
-              <label class="fUpload__area" id="uplArea">
-                <input
-                  type="file"
-                  id="librettoInput"
-                  name="libretti"
-                  accept="image/*"
-                  capture="environment"
-                  multiple
-                />
-                <span id="uplHint"
-                  ><i class="bi bi-camera"></i> Scatta o scegli foto (anche più
-                  di una)</span
+              <!-- input vero (nascosto) -->
+              <input
+                type="file"
+                id="librettoInput"
+                name="libretti"
+                accept="image/*"
+                multiple
+                hidden
+              />
+
+              <!-- area informativa + azioni -->
+              <div class="fUpload__area" id="uplArea" style="cursor: default">
+                <span id="uplHint">
+                  <i class="bi bi-camera"></i> Scatta o scegli foto (anche più
+                  di una)
+                </span>
+
+                <div
+                  class="uplActions"
+                  style="display: flex; gap: 10px; margin-top: 10px"
                 >
-              </label>
+                  <button
+                    type="button"
+                    id="btnCamera"
+                    class="btn btnx btnx--ghost"
+                    style="flex: 1"
+                  >
+                    <i class="bi bi-camera"></i> Scatta
+                  </button>
+
+                  <button
+                    type="button"
+                    id="btnGallery"
+                    class="btn btnx btnx--ghost"
+                    style="flex: 1"
+                  >
+                    <i class="bi bi-images"></i> Galleria
+                  </button>
+                </div>
+              </div>
 
               <div class="uplBar">
                 <div class="uplCount" id="uplCount">0 foto</div>

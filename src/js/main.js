@@ -22,6 +22,29 @@ document.addEventListener("DOMContentLoaded", () => {
   const uplClear = document.getElementById("uplClear");
   const uplHint = document.getElementById("uplHint");
 
+  // ---------------- CAMERA / GALLERY BUTTONS ----------------
+  const btnCamera = document.getElementById("btnCamera");
+  const btnGallery = document.getElementById("btnGallery");
+
+  // SCATTA FOTO (apre direttamente la fotocamera)
+  if (btnCamera && fileInput) {
+    btnCamera.addEventListener("click", () => {
+      // una foto alla volta (UX migliore su telefono)
+      fileInput.removeAttribute("multiple");
+      fileInput.setAttribute("capture", "environment");
+      fileInput.click();
+    });
+  }
+
+  // GALLERIA (foto già presenti, anche multiple)
+  if (btnGallery && fileInput) {
+    btnGallery.addEventListener("click", () => {
+      fileInput.setAttribute("multiple", "multiple");
+      fileInput.removeAttribute("capture");
+      fileInput.click();
+    });
+  }
+
   /** @type {File[]} */
   let selectedFiles = [];
 
@@ -205,28 +228,44 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function sendPayload(payload) {
+    const body = JSON.stringify(payload);
+    const bytes = new Blob([body]).size;
+
+    // Soglia prudente: keepalive / sendBeacon con payload grandi spesso falliscono
+    const SMALL_LIMIT = 55_000; // ~55KB
+
+    const canKeepalive = bytes <= SMALL_LIMIT;
+    const hasPhotos = !!(payload.libretti && payload.libretti.length);
+
+    // 1) FETCH (sempre prima scelta)
     try {
       await fetch(ENDPOINT, {
         method: "POST",
         mode: "no-cors",
-        keepalive: true,
+        // keepalive SOLO se piccolo e senza foto (o comunque piccolo)
+        keepalive: canKeepalive && !hasPhotos,
         headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload),
+        body,
       });
       return true;
     } catch (e) {
-      console.warn("fetch fallito, provo sendBeacon", e);
+      console.warn("fetch fallito", e, { bytes, canKeepalive, hasPhotos });
     }
 
-    try {
-      const blob = new Blob([JSON.stringify(payload)], {
-        type: "text/plain;charset=utf-8",
-      });
-      return !!navigator.sendBeacon(ENDPOINT, blob);
-    } catch (e) {
-      console.warn("sendBeacon fallito", e);
-      return false;
+    // 2) FALLBACK sendBeacon SOLO se payload piccolo
+    if (canKeepalive) {
+      try {
+        const ok = navigator.sendBeacon(
+          ENDPOINT,
+          new Blob([body], { type: "text/plain;charset=utf-8" }),
+        );
+        return !!ok;
+      } catch (e) {
+        console.warn("sendBeacon fallito", e);
+      }
     }
+
+    return false;
   }
 
   async function flushQueue() {
@@ -356,9 +395,21 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // enqueue + invio singolo (no doppioni)
-      const queuedId = enqueue(payload);
+      const hasPhotos = !!(payload.libretti && payload.libretti.length);
+
+      // ✅ Queue solo se NON ci sono foto (evita localStorage pieno)
+      let queuedId = null;
+      if (!hasPhotos) queuedId = enqueue(payload);
+
       const ok = await sendPayload(payload);
-      if (ok) removeFromQueue(queuedId);
+
+      // se era in coda e l’invio è andato ok, rimuovi
+      if (ok && queuedId) removeFromQueue(queuedId);
+
+      // se NON ok e c'erano foto, avvisa (non possiamo accodare base64)
+      if (!ok && hasPhotos) {
+        throw new Error("upload-failed");
+      }
 
       form.reset();
       resetUploader();
@@ -388,7 +439,9 @@ document.addEventListener("DOMContentLoaded", () => {
           btn.innerHTML = prev || '<i class="bi bi-send"></i> Invia richiesta';
         }, 2000);
       }
-      if (msg) msg.textContent = "Errore durante l’invio. Riprova.";
+      if (msg)
+        msg.textContent =
+          "Invio non riuscito. Riprova (meglio con rete stabile). Se non va, invia meno foto o una foto più leggera.";
     } finally {
       isSubmitting = false;
     }
