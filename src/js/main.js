@@ -357,17 +357,36 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // ✅ validazione numerica (ora obbligatori)
+    const yearNum = Number(String(fd.get("year") || "").trim());
+    const kmNum = Number(String(fd.get("km") || "").trim());
+    const maxYear = new Date().getFullYear() + 1;
+
+    if (!Number.isFinite(yearNum) || yearNum < 1950 || yearNum > maxYear) {
+      alert("Inserisci un anno valido.");
+      isSubmitting = false;
+      return;
+    }
+    if (!Number.isFinite(kmNum) || kmNum < 0 || kmNum > 2000000) {
+      alert("Inserisci km validi.");
+      isSubmitting = false;
+      return;
+    }
+
     const source =
       window.location.hostname === "localhost" ||
       window.location.hostname === "127.0.0.1"
         ? "ritiriamoauto.it"
         : window.location.hostname.replace(/^www\./, "").split(":")[0];
 
+    // ✅ payload aggiornato (brand/model/fuel obbligatori)
     const payload = {
       name: String(fd.get("name") || "").trim(),
       phone,
       city: String(fd.get("city") || "").trim(),
-      car: String(fd.get("car") || "").trim(),
+      brand: String(fd.get("brand") || "").trim(),
+      model: String(fd.get("model") || "").trim(),
+      fuel: String(fd.get("fuel") || "").trim(),
       condition: String(fd.get("condition") || "").trim(),
       year: String(fd.get("year") || "").trim(),
       km: String(fd.get("km") || "").trim(),
@@ -393,7 +412,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const ts = new Date().toISOString().replace(/[:.]/g, "-");
         const prefix = [
           slug(fd.get("name")),
-          slug(fd.get("car")),
+          slug(`${fd.get("brand")} ${fd.get("model")}`),
           slug(fd.get("city")),
           ts,
         ]

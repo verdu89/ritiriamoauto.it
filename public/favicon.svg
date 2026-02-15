@@ -1,13 +1,25 @@
-<svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+<svg width="420" height="96" viewBox="0 0 420 96" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <style>
+      .brand { fill:#0B1F3B; font-family: Manrope, Inter, Arial; font-weight:800; }
+      .sub { fill:#5B6676; font-family: Manrope, Inter, Arial; font-weight:600; }
       .accent { stroke:#22C55E; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; fill:none;}
       .car { stroke:#0B1F3B; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; fill:none;}
     </style>
   </defs>
 
-  <path class="car" d="M10 54 L24 32 H66 L80 54 Z"></path>
-  <circle class="car" cx="30" cy="58" r="6"></circle>
-  <circle class="car" cx="66" cy="58" r="6"></circle>
-  <path class="accent" d="M26 34 L36 44 L58 20"></path>
+  <!-- Icon -->
+  <g transform="translate(6,16)">
+    <!-- Car outline -->
+    <path class="car" d="M8 40 L20 22 H60 L72 40 Z"></path>
+    <circle class="car" cx="24" cy="44" r="6"></circle>
+    <circle class="car" cx="56" cy="44" r="6"></circle>
+
+    <!-- Check -->
+    <path class="accent" d="M82 36 L92 46 L110 24"></path>
+  </g>
+
+  <!-- Text -->
+  <text x="140" y="48" font-size="34" class="brand">Ritiriamo Auto</text>
+  <text x="142" y="72" font-size="16" class="sub">valutazione e ritiro veicoli</text>
 </svg>

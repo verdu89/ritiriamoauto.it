@@ -1,0 +1,13 @@
+<svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .accent { stroke:#22C55E; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; fill:none;}
+      .car { stroke:#0B1F3B; stroke-width:6; stroke-linecap:round; stroke-linejoin:round; fill:none;}
+    </style>
+  </defs>
+
+  <path class="car" d="M10 54 L24 32 H66 L80 54 Z"></path>
+  <circle class="car" cx="30" cy="58" r="6"></circle>
+  <circle class="car" cx="66" cy="58" r="6"></circle>
+  <path class="accent" d="M26 34 L36 44 L58 20"></path>
+</svg>
