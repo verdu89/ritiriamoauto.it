@@ -8,8 +8,8 @@ var klaroConfig = {
   acceptAll: true,
   hideDeclineAll: false,
   default: false,
-  privacyPolicy: "/privacy.html",
-  cookiePolicy: "/cookie.html",
+  privacyPolicy: "privacy.html",
+  cookiePolicy: "cookie.html",
 
   translations: {
     it: {
