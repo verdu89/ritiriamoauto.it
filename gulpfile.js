@@ -43,26 +43,47 @@ function js() {
     .pipe(browserSync.stream());
 }
 
-function img() {
-  return src(paths.imgAll, { allowEmpty: true })
+/**
+ * IMPORTANT:
+ * - encoding:false forces binary (Buffer) read → prevents PNG corruption
+ * - do NOT use browserSync.stream() for binary assets (images/fonts/etc)
+ */
+function img(done) {
+  return src(paths.imgAll, { allowEmpty: true, encoding: false })
     .pipe(plumber())
     .pipe(dest("dist/img"))
-    .pipe(browserSync.stream());
+    .on("end", () => {
+      browserSync.reload();
+      done();
+    });
 }
 
+/**
+ * WebP conversion: keep binary read too.
+ * This is only for build, but safe to keep consistent.
+ */
 function imgWebp() {
   return import("gulp-webp").then((m) => {
     const webp = m.default || m;
 
-    return src(paths.imgToWebp, { allowEmpty: true })
+    return src(paths.imgToWebp, { allowEmpty: true, encoding: false })
       .pipe(plumber())
       .pipe(webp({ quality: 82 }))
       .pipe(dest("dist/img"));
   });
 }
 
-function other() {
-  return src(paths.other).pipe(dest("dist"));
+/**
+ * Copy other static files from /public as binary as well
+ * (favicons, fonts, png, etc.)
+ */
+function other(done) {
+  return src(paths.other, { encoding: false })
+    .pipe(dest("dist"))
+    .on("end", () => {
+      browserSync.reload();
+      done();
+    });
 }
 
 function serve() {
