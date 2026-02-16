@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cookie Policy • Ritiriamo Auto</title>
+    <meta name="robots" content="noindex" />
+
+    <link rel="stylesheet" href="/css/legal.css" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+    <!-- Klaro (stable CDN) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/klaro@0.7.21/dist/klaro.min.css"
+    />
+    <script src="/js/klaro-config.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/klaro@0.7.21/dist/klaro.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <header class="legalNav">
+      <div class="legalNav__inner">
+        <a class="legalNav__brand" href="/" aria-label="Torna al sito">
+          <img src="/img/logo-nav.png" alt="Ritiriamo Auto" />
+        </a>
+
+        <div class="legalNav__actions">
+          <a class="legalBtn legalBtn--ghost" href="/">← Home</a>
+          <button
+            class="legalBtn legalBtn--ghost"
+            type="button"
+            onclick="
+              window.klaro
+                ? klaro.show()
+                : alert(
+                    'Preferenze cookie non disponibili. Ricarica la pagina.',
+                  )
+            "
+          >
+            Preferenze cookie
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="legalWrap">
+      <section class="legalHero">
+        <div class="legalKicker">Informativa</div>
+        <h1 class="legalH1">Cookie Policy</h1>
+        <p class="legalLead">
+          Usiamo cookie tecnici necessari al funzionamento del sito e, previo
+          consenso, servizi di terze parti (es. Google Maps).
+        </p>
+
+        <div class="legalCard legalCard--soft">
+          <div class="legalCard__row">
+            <div class="legalCard__col">
+              <div class="legalMiniTitle">Gestisci consenso</div>
+              <div class="legalMiniText">
+                Puoi modificare o revocare il consenso in qualsiasi momento.
+              </div>
+            </div>
+            <div class="legalCard__col legalCard__col--right">
+              <button
+                class="legalBtn legalBtn--cta"
+                type="button"
+                onclick="
+                  window.klaro
+                    ? klaro.show()
+                    : alert(
+                        'Preferenze cookie non disponibili. Ricarica la pagina.',
+                      )
+                "
+              >
+                Apri preferenze cookie
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="legalGrid">
+        <aside class="legalSide">
+          <div class="legalSide__box">
+            <div class="legalSide__title">Indice</div>
+            <nav class="legalToc">
+              <a href="#cosa-sono">1. Cosa sono</a>
+              <a href="#tecnici">2. Cookie tecnici</a>
+              <a href="#terze-parti">3. Terze parti</a>
+              <a href="#modulo">4. Modulo richieste</a>
+              <a href="#gestione">5. Gestione preferenze</a>
+            </nav>
+          </div>
+        </aside>
+
+        <article class="legalContent">
+          <section class="legalSection" id="cosa-sono">
+            <h2>1. Cosa sono i cookie</h2>
+            <p class="muted">
+              I cookie sono piccoli file che i siti possono salvare sul
+              dispositivo dell’utente per garantire funzionalità, sicurezza e —
+              previo consenso — contenuti o servizi di terze parti.
+            </p>
+          </section>
+
+          <section class="legalSection" id="tecnici">
+            <h2>2. Cookie tecnici (necessari)</h2>
+            <p>
+              Utilizziamo cookie tecnici indispensabili al funzionamento del
+              sito e alla sicurezza. Questi non richiedono consenso.
+            </p>
+          </section>
+
+          <section class="legalSection" id="terze-parti">
+            <h2>3. Servizi di terze parti (previo consenso)</h2>
+            <div class="legalCard">
+              <div class="legalBadge">Mappe</div>
+              <h3 class="legalH3">Google Maps</h3>
+              <p class="muted">
+                Le mappe vengono caricate solo dopo il consenso. In assenza di
+                consenso, viene mostrato un placeholder.
+              </p>
+            </div>
+          </section>
+
+          <section class="legalSection" id="modulo">
+            <h2>4. Modulo richieste</h2>
+            <p>
+              Il sistema di invio richieste non utilizza cookie di profilazione
+              e non effettua tracciamento dell’utente per finalità di marketing.
+            </p>
+          </section>
+
+          <section class="legalSection" id="gestione">
+            <h2>5. Come gestire o revocare il consenso</h2>
+            <div class="legalActions">
+              <button
+                class="legalBtn legalBtn--ghost"
+                type="button"
+                onclick="
+                  window.klaro
+                    ? klaro.show()
+                    : alert(
+                        'Preferenze cookie non disponibili. Ricarica la pagina.',
+                      )
+                "
+              >
+                Apri preferenze cookie
+              </button>
+              <a class="legalBtn legalBtn--ghost" href="/privacy.html"
+                >Vai alla Privacy Policy</a
+              >
+            </div>
+            <p class="muted" style="margin-top: 10px">
+              Ultimo aggiornamento: <strong>16/02/2026</strong>
+            </p>
+          </section>
+
+          <footer class="legalFoot">
+            <div>© <span id="y"></span> Ritiriamo Auto</div>
+            <div class="legalFoot__links">
+              <a href="/privacy.html">Privacy</a>
+              <a href="/cookie.html" aria-current="page">Cookie</a>
+              <a
+                href="#"
+                onclick="
+                  window.klaro
+                    ? klaro.show()
+                    : alert(
+                        'Preferenze cookie non disponibili. Ricarica la pagina.',
+                      );
+                  return false;
+                "
+              >
+                Preferenze cookie
+              </a>
+              <a href="/licenza.html">Licenza</a>
+            </div>
+          </footer>
+        </article>
+      </section>
+    </main>
+
+    <script>
+      const y = document.getElementById("y");
+      if (y) y.textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

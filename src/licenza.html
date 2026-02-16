@@ -2,79 +2,185 @@
 <html lang="it">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Licenza sistema richieste</title>
-    <link rel="stylesheet" href="css/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Licenza sistema richieste • Ritiriamo Auto</title>
+    <meta name="robots" content="noindex" />
+
+    <link rel="stylesheet" href="/css/legal.css" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+
+    <!-- Klaro (optional but consistent) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/klaro@0.7.21/dist/klaro.min.css"
+    />
+    <script src="/js/klaro-config.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/klaro@0.7.21/dist/klaro.min.js"
+    ></script>
   </head>
 
   <body>
-    <main class="sectionX">
-      <div class="container" style="max-width: 780px">
-        <h1 class="sectionX__title">Licenza d’uso del sistema richieste</h1>
+    <header class="legalNav">
+      <div class="legalNav__inner">
+        <a class="legalNav__brand" href="/" aria-label="Torna al sito">
+          <img src="/img/logo-nav.png" alt="Ritiriamo Auto" />
+        </a>
 
-        <p class="sectionX__sub">
-          Informazioni sul funzionamento del modulo invio richieste presente nel
-          sito.
-        </p>
-
-        <hr style="margin: 28px 0" />
-
-        <h2>Natura del servizio</h2>
-        <p>
-          Il presente sito web è di proprietà dell’attività indicata nelle
-          pagine informative. Il sistema di gestione richieste (modulo invio
-          dati, caricamento foto, inoltro automatico email e archiviazione) è
-          fornito in licenza d’uso da un fornitore esterno.
-        </p>
-        <p>L’attività utilizza il sistema ma non ne detiene la proprietà.</p>
-
-        <h2>Funzionamento</h2>
-        <p>
-          Il sistema consente ai visitatori di inviare una richiesta contenente
-          dati e immagini del veicolo. L’invio genera una comunicazione privata
-          verso l’attività e non costituisce prenotazione né accordo
-          contrattuale.
-        </p>
-
-        <h2>Disponibilità del servizio</h2>
-        <p>
-          Il modulo richieste dipende da servizi tecnici esterni e può non
-          essere disponibile in modo continuo.
-        </p>
-        <p>
-          In caso di sospensione, mancato rinnovo o interruzione del servizio,
-          il sito rimane online ma l’invio delle richieste potrebbe non essere
-          attivo.
-        </p>
-
-        <h2>Limitazione di responsabilità</h2>
-        <p>
-          Il sistema ha funzione di raccolta contatti. Non garantisce quantità
-          di richieste, tempi di risposta o conclusione di trattative
-          commerciali.
-        </p>
-
-        <h2>Hosting e dominio</h2>
-        <p>
-          Dominio e spazio web sono gestiti dall’attività titolare del sito. La
-          licenza riguarda esclusivamente il funzionamento del sistema di
-          gestione richieste.
-        </p>
-
-        <h2>Privacy</h2>
-        <p>
-          Per informazioni sul trattamento dei dati personali consultare la
-          pagina Privacy del sito.
-        </p>
-
-        <div style="margin-top: 40px; opacity: 0.6">
-          Ultimo aggiornamento: <span id="y"></span>
+        <div class="legalNav__actions">
+          <a class="legalBtn legalBtn--ghost" href="/">← Home</a>
+          <button
+            class="legalBtn legalBtn--ghost"
+            type="button"
+            onclick="
+              window.klaro
+                ? klaro.show()
+                : alert(
+                    'Preferenze cookie non disponibili. Ricarica la pagina.',
+                  )
+            "
+          >
+            Preferenze cookie
+          </button>
         </div>
       </div>
+    </header>
+
+    <main class="legalWrap">
+      <section class="legalHero">
+        <div class="legalKicker">Trasparenza</div>
+        <h1 class="legalH1">Licenza d’uso del sistema richieste</h1>
+        <p class="legalLead">
+          Informazioni sul funzionamento del modulo “Invia i dati dell’auto”
+          presente nel sito.
+        </p>
+
+        <div class="legalCard legalCard--soft">
+          <div class="legalMiniTitle">In breve</div>
+          <div class="legalMiniText">
+            Il sito e i contenuti sono del titolare dell’attività. Il modulo
+            richieste è un sistema software fornito in licenza d’uso da un
+            fornitore tecnico esterno.
+          </div>
+        </div>
+      </section>
+
+      <section class="legalGrid">
+        <aside class="legalSide">
+          <div class="legalSide__box">
+            <div class="legalSide__title">Indice</div>
+            <nav class="legalToc">
+              <a href="#natura">1. Natura del servizio</a>
+              <a href="#funzionamento">2. Funzionamento</a>
+              <a href="#dati">3. Destinazione dei dati</a>
+              <a href="#disponibilita">4. Disponibilità</a>
+              <a href="#limiti">5. Limitazione responsabilità</a>
+              <a href="#privacy">6. Privacy</a>
+            </nav>
+          </div>
+        </aside>
+
+        <article class="legalContent">
+          <section class="legalSection" id="natura">
+            <h2>1. Natura del servizio</h2>
+            <p>
+              Il presente sito web, il dominio e i contenuti sono gestiti dal
+              titolare dell’attività indicata nelle pagine informative. Il
+              sistema di gestione richieste (modulo invio dati, caricamento
+              immagini, inoltro automatico e archiviazione) è fornito in licenza
+              d’uso da un fornitore tecnico esterno.
+            </p>
+            <div class="legalCard" style="margin-top: 10px">
+              <div class="legalMiniTitle">Fornitore tecnico</div>
+              <div class="legalMiniText">
+                <strong>[NOME FORNITORE / SERVIZIO]</strong> — Contatto:
+                <strong>[EMAIL SUPPORTO]</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="legalSection" id="funzionamento">
+            <h2>2. Funzionamento</h2>
+            <p>
+              Il sistema consente ai visitatori di inviare una richiesta
+              contenente dati del veicolo e, se forniti, immagini. L’invio
+              genera una comunicazione privata verso il titolare dell’attività e
+              non costituisce prenotazione né accordo contrattuale.
+            </p>
+          </section>
+
+          <section class="legalSection" id="dati">
+            <h2>3. Destinazione dei dati</h2>
+            <p>
+              I dati inviati tramite il modulo vengono recapitati e archiviati
+              in strumenti informatici di proprietà del titolare del sito (es.
+              casella email e archivio cloud del titolare).
+            </p>
+            <p class="muted">
+              Il fornitore del sistema non utilizza i dati per finalità proprie
+              e non effettua attività di marketing sui dati raccolti tramite il
+              modulo.
+            </p>
+          </section>
+
+          <section class="legalSection" id="disponibilita">
+            <h2>4. Disponibilità del servizio</h2>
+            <p>
+              Il modulo richieste dipende da servizi tecnici esterni e può non
+              essere disponibile in modo continuo. In caso di manutenzione,
+              interruzioni o mancato rinnovo del servizio, il sito può rimanere
+              online ma l’invio delle richieste potrebbe non essere attivo.
+            </p>
+          </section>
+
+          <section class="legalSection" id="limiti">
+            <h2>5. Limitazione di responsabilità</h2>
+            <p>
+              Il sistema ha funzione di raccolta contatti. Non garantisce
+              quantità di richieste, tempi di risposta o conclusione di
+              trattative commerciali.
+            </p>
+          </section>
+
+          <section class="legalSection" id="privacy">
+            <h2>6. Privacy</h2>
+            <p>
+              Per informazioni sul trattamento dei dati personali consultare la
+              <a href="/privacy.html">Privacy Policy</a> e la
+              <a href="/cookie.html">Cookie Policy</a>.
+            </p>
+            <p class="muted"><em>Ultimo aggiornamento: 16/02/2026</em></p>
+          </section>
+
+          <footer class="legalFoot">
+            <div>© <span id="y"></span> Ritiriamo Auto</div>
+            <div class="legalFoot__links">
+              <a href="/privacy.html">Privacy</a>
+              <a href="/cookie.html">Cookie</a>
+              <a
+                href="#"
+                onclick="
+                  window.klaro
+                    ? klaro.show()
+                    : alert(
+                        'Preferenze cookie non disponibili. Ricarica la pagina.',
+                      );
+                  return false;
+                "
+              >
+                Preferenze cookie
+              </a>
+              <a href="/licenza.html" aria-current="page">Licenza</a>
+            </div>
+          </footer>
+        </article>
+      </section>
     </main>
 
     <script>
-      document.getElementById("y").textContent = new Date().getFullYear();
+      const y = document.getElementById("y");
+      if (y) y.textContent = new Date().getFullYear();
     </script>
   </body>
 </html>

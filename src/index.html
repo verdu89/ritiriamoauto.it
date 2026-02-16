@@ -28,6 +28,21 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
+    <!--Cookies-->
+    <!-- Klaro CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/klaro@0.7.21/dist/klaro.min.css"
+    />
+
+    <!-- Klaro config -->
+    <script src="/js/klaro-config.js"></script>
+
+    <!-- Klaro JS -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/klaro@0.7.21/dist/klaro.min.js"
+    ></script>
 
     <link rel="stylesheet" href="css/styles.css" />
   </head>
@@ -437,7 +452,7 @@
             </div>
 
             <div class="fRow">
-              <label>Note (obbligatorie)</label>
+              <label>Note (facoltative)</label>
               <textarea
                 name="notes"
                 rows="3"
@@ -449,7 +464,6 @@
             <div class="fUpload" id="uplWrap">
               <span class="fUpload__label">Foto libretto (facoltativo)</span>
 
-              <!-- input vero (nascosto) -->
               <input
                 type="file"
                 id="librettoInput"
@@ -459,7 +473,6 @@
                 hidden
               />
 
-              <!-- area informativa + azioni -->
               <div class="fUpload__area" id="uplArea" style="cursor: default">
                 <span id="uplHint">
                   <i class="bi bi-camera"></i> Scatta o scegli foto (anche più
@@ -510,12 +523,27 @@
               </div>
             </div>
 
+            <!-- CONSENSO -->
             <label class="fPrivacy">
-              <input type="checkbox" required />
-              <span
-                >Acconsento al trattamento dati per gestire la richiesta</span
-              >
+              <input type="checkbox" name="privacyConsent" required />
+              <span>
+                Ho letto la
+                <a href="/privacy.html" target="_blank" rel="noopener"
+                  >Privacy Policy</a
+                >
+                e acconsento al trattamento dei dati per gestire la richiesta.
+              </span>
             </label>
+
+            <!-- INFORMATIVA BREVE -->
+            <div class="fFine" style="margin-top: 8px">
+              I dati inviati saranno utilizzati esclusivamente per valutare il
+              veicolo e ricontattarti in merito alla richiesta. Le foto del
+              libretto sono facoltative e verranno gestite secondo la
+              <a href="/privacy.html" target="_blank" rel="noopener"
+                >Privacy Policy</a
+              >.
+            </div>
 
             <button class="btn btnx btnx--cta btnx--lg w-100" type="submit">
               <i class="bi bi-send"></i> Invia richiesta
@@ -523,7 +551,7 @@
 
             <div class="fFine">Solo su richiesta • Nessuno spam</div>
 
-            <!-- Honeypot anti-bot (deve restare vuoto) -->
+            <!-- Honeypot anti-bot -->
             <input
               type="text"
               name="website"
@@ -539,7 +567,6 @@
               "
             />
 
-            <!-- Messaggio di stato invio -->
             <div id="formMsg" class="fFine" aria-live="polite"></div>
           </form>
         </div>
@@ -596,13 +623,32 @@
                   href="https://maps.app.goo.gl/VKLPyn2Htdz7H9ya6"
                   aria-label="Apri Orroli su Google Maps"
                 >
-                  <iframe
-                    class="mapCard__frame"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps?q=Orroli%20Sardegna&output=embed"
-                    title="Mappa Orroli"
-                  ></iframe>
+                  <!-- PLACEHOLDER (no calls to Google until consent) -->
+                  <div
+                    class="mapCard__frame mapCard__placeholder"
+                    data-klaro-maps
+                    data-map-src="https://www.google.com/maps?q=Orroli%20Sardegna&output=embed"
+                    data-map-title="Mappa Orroli"
+                  >
+                    <div class="mapCard__phInner">
+                      <div class="mapCard__phTitle">Google Maps</div>
+                      <div class="mapCard__phText">
+                        Per visualizzare la mappa devi accettare i cookie
+                        “Mappe”.
+                      </div>
+                      <button
+                        type="button"
+                        class="btn btnx btnx--ghost"
+                        onclick="
+                          if (window.klaro) klaro.show();
+                          return false;
+                        "
+                      >
+                        Preferenze cookie
+                      </button>
+                    </div>
+                  </div>
+
                   <div class="mapCard__overlay">
                     <div class="mapCard__pin">
                       <i class="bi bi-geo-alt-fill"></i>
@@ -637,13 +683,31 @@
                   href="https://www.google.com/maps/search/?api=1&query=Via%20Pola%2039%2C%20Cagliari"
                   aria-label="Apri Cagliari su Google Maps"
                 >
-                  <iframe
-                    class="mapCard__frame"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps?q=Via%20Pola%2039%2C%20Cagliari&output=embed"
-                    title="Mappa Cagliari - Via Pola 39"
-                  ></iframe>
+                  <div
+                    class="mapCard__frame mapCard__placeholder"
+                    data-klaro-maps
+                    data-map-src="https://www.google.com/maps?q=Via%20Pola%2039%2C%20Cagliari&output=embed"
+                    data-map-title="Mappa Cagliari - Via Pola 39"
+                  >
+                    <div class="mapCard__phInner">
+                      <div class="mapCard__phTitle">Google Maps</div>
+                      <div class="mapCard__phText">
+                        Per visualizzare la mappa devi accettare i cookie
+                        “Mappe”.
+                      </div>
+                      <button
+                        type="button"
+                        class="btn btnx btnx--ghost"
+                        onclick="
+                          if (window.klaro) klaro.show();
+                          return false;
+                        "
+                      >
+                        Preferenze cookie
+                      </button>
+                    </div>
+                  </div>
+
                   <div class="mapCard__overlay">
                     <div class="mapCard__pin">
                       <i class="bi bi-geo-alt-fill"></i>
@@ -678,13 +742,31 @@
                   href="https://www.google.com/maps/search/?api=1&query=Via%20Generale%20Toxiri%2013%2C%20Tortol%C3%AC"
                   aria-label="Apri Tortolì su Google Maps"
                 >
-                  <iframe
-                    class="mapCard__frame"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps?q=Via%20Generale%20Toxiri%2013%2C%20Tortol%C3%AC&output=embed"
-                    title="Mappa Tortolì - Via Generale Toxiri 13"
-                  ></iframe>
+                  <div
+                    class="mapCard__frame mapCard__placeholder"
+                    data-klaro-maps
+                    data-map-src="https://www.google.com/maps?q=Via%20Generale%20Toxiri%2013%2C%20Tortol%C3%AC&output=embed"
+                    data-map-title="Mappa Tortolì - Via Generale Toxiri 13"
+                  >
+                    <div class="mapCard__phInner">
+                      <div class="mapCard__phTitle">Google Maps</div>
+                      <div class="mapCard__phText">
+                        Per visualizzare la mappa devi accettare i cookie
+                        “Mappe”.
+                      </div>
+                      <button
+                        type="button"
+                        class="btn btnx btnx--ghost"
+                        onclick="
+                          if (window.klaro) klaro.show();
+                          return false;
+                        "
+                      >
+                        Preferenze cookie
+                      </button>
+                    </div>
+                  </div>
+
                   <div class="mapCard__overlay">
                     <div class="mapCard__pin">
                       <i class="bi bi-geo-alt-fill"></i>
@@ -710,6 +792,23 @@
               </div>
             </div>
           </div>
+
+          <!-- This script runs ONLY after consent for service "maps" -->
+          <script
+            type="text/plain"
+            data-type="application/javascript"
+            data-name="maps"
+          >
+            (function () {
+              document.querySelectorAll('[data-klaro-maps]').forEach(function (el) {
+                var src = el.getAttribute('data-map-src');
+                var title = el.getAttribute('data-map-title') || 'Google Maps';
+                el.outerHTML =
+                  '<iframe class="mapCard__frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ' +
+                  'src="' + src + '" title="' + title.replace(/"/g, '&quot;') + '"></iframe>';
+              });
+            })();
+          </script>
 
           <div class="mapNote">
             <i class="bi bi-info-circle"></i>
@@ -895,10 +994,19 @@
       <footer class="footX">
         <div class="container footX__inner">
           <div class="footX__copy">© <span id="y"></span> Ritiriamo Auto</div>
+
           <div class="footX__links">
-            <a href="privacy.html">Privacy</a>
-            <a href="cookie.html">Cookie</a>
-            <a href="licenza.html">Licenza sistema richieste</a>
+            <a href="/privacy.html">Privacy</a>
+            <a href="/cookie.html">Cookie</a>
+            <a
+              href="#"
+              onclick="
+                klaro.show();
+                return false;
+              "
+              >Preferenze cookie</a
+            >
+            <a href="/licenza.html">Licenza sistema richieste</a>
           </div>
         </div>
       </footer>
@@ -907,6 +1015,7 @@
     <script>
       document.getElementById("y").textContent = new Date().getFullYear();
     </script>
+    <div id="klaro"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
   </body>

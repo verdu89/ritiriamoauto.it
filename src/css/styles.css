@@ -790,4 +790,40 @@ body {
     text-decoration: none;
     transform: translateY(-1px);
   }
+  .mapPlaceholder {
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
+  }
+  .mapCard__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 320px; /* deve combaciare con la tua altezza iframe */
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.02);
+    text-align: center;
+    padding: 16px;
+  }
+
+  .mapCard__phInner {
+    max-width: 260px;
+  }
+  .mapCard__phTitle {
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .mapCard__phText {
+    opacity: 0.8;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+  }
 }
