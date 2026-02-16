@@ -3,13 +3,111 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Ritiriamo Auto | Acquisto o Rottamazione (Pratiche Incluse)</title>
+
+    <title>
+      Ritiro Auto Usate e Rottamazione in Sardegna | RitiriamoAuto.it
+    </title>
     <meta
       name="description"
-      content="Invia i dati e le foto del libretto: ti diciamo se possiamo comprarla oppure gestiamo la rottamazione con pratiche incluse. Sardegna: Orroli e Cagliari."
+      content="Valutiamo e ritiriamo auto usate, incidentate o da rottamare in tutta la Sardegna. Invia i dati e ricevi un esito reale entro la giornata."
     />
 
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <!-- Canonical (versione ufficiale: WWW) -->
+    <link rel="canonical" href="https://www.ritiriamoauto.it/" />
+
+    <!-- Robots -->
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="it_IT" />
+    <meta property="og:site_name" content="RitiriamoAuto.it" />
+    <meta
+      property="og:title"
+      content="Ritiro Auto Usate e Rottamazione in Sardegna | RitiriamoAuto.it"
+    />
+    <meta
+      property="og:description"
+      content="Valutiamo e ritiriamo auto usate, incidentate o da rottamare in tutta la Sardegna. Invia i dati e ricevi un esito reale entro la giornata."
+    />
+    <meta property="og:url" content="https://www.ritiriamoauto.it/" />
+    <meta
+      property="og:image"
+      content="https://www.ritiriamoauto.it/img/og-cover.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Ritiro Auto Usate e Rottamazione in Sardegna | RitiriamoAuto.it"
+    />
+    <meta
+      name="twitter:description"
+      content="Valutiamo e ritiriamo auto usate, incidentate o da rottamare in tutta la Sardegna. Invia i dati e ricevi un esito reale entro la giornata."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.ritiriamoauto.it/img/og-cover.jpg"
+    />
+
+    <!-- Structured data (fix: url WWW + location invece di address array) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "AutoDealer",
+        "name": "Ritiriamo Auto",
+        "url": "https://www.ritiriamoauto.it/",
+        "description": "Acquisto auto usate e rottamazione con pratiche incluse in Sardegna.",
+        "areaServed": { "@type": "AdministrativeArea", "name": "Sardegna" },
+        "serviceType": [
+          "Acquisto auto usate",
+          "Ritiro auto incidentate",
+          "Rottamazione auto"
+        ],
+        "image": "https://www.ritiriamoauto.it/img/og-cover.jpg",
+        "location": [
+          {
+            "@type": "Place",
+            "name": "Sede Cagliari",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Via Pola 39",
+              "addressLocality": "Cagliari",
+              "addressCountry": "IT"
+            }
+          },
+          {
+            "@type": "Place",
+            "name": "Sede Orroli",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Orroli",
+              "addressCountry": "IT"
+            }
+          },
+          {
+            "@type": "Place",
+            "name": "Sede Tortolì",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Via Generale Toxiri 13",
+              "addressLocality": "Tortolì",
+              "addressCountry": "IT"
+            }
+          }
+        ]
+      }
+    </script>
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0b0f14" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,7 +117,7 @@
       rel="stylesheet"
     />
 
-    <!-- Bootstrap (grid + form base) + Icons -->
+    <!-- CSS vendor -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -28,22 +126,19 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
-    <!--Cookies-->
-    <!-- Klaro CSS -->
+
+    <!-- Cookies (Klaro) -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/klaro@0.7.21/dist/klaro.min.css"
     />
-
-    <!-- Klaro config -->
     <script src="js/klaro-config.js"></script>
-
-    <!-- Klaro JS -->
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/klaro@0.7.21/dist/klaro.min.js"
     ></script>
 
+    <!-- Your styles -->
     <link rel="stylesheet" href="css/styles.css" />
   </head>
 
@@ -1007,6 +1102,13 @@
               >Preferenze cookie</a
             >
             <a href="licenza.html">Licenza sistema richieste</a>
+          </div>
+          <div class="footX__seo">
+            <a href="ritiro-auto-cagliari.html">Ritiro auto Cagliari</a>
+            <a href="rottamazione-auto-cagliari.html"
+              >Rottamazione auto Cagliari</a
+            >
+            <a href="ritiro-auto-sardegna.html">Ritiro auto Sardegna</a>
           </div>
         </div>
       </footer>

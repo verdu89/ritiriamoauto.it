@@ -827,3 +827,23 @@ body {
     margin-bottom: 12px;
   }
 }
+.footX__seo {
+  margin-top: 6px;
+  font-size: 0.68rem;
+  line-height: 1.2;
+  opacity: 0.45;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footX__seo a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(255, 255, 255, 0.25);
+  transition: opacity 0.15s ease;
+}
+
+.footX__seo a:hover {
+  opacity: 0.9;
+}

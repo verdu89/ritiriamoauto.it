@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://ritiriamoauto.it/sitemap.xml
+
+Sitemap: https://www.ritiriamoauto.it/sitemap.xml
