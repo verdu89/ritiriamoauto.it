@@ -14,6 +14,7 @@
   /* lines + radius + shadows */
   --line: rgba(15, 23, 42, 0.08);
   --line2: rgba(15, 23, 42, 0.12);
+  --border: var(--line2); /* alias: usato da chip/faq */
 
   --r-sm: 14px;
   --r-md: 18px;
@@ -56,6 +57,7 @@ h3 {
 .container {
   max-width: var(--max);
 }
+
 a {
   color: inherit;
 }
@@ -304,12 +306,13 @@ a {
     grid-template-columns: 1fr 1fr;
   }
 }
+
 .cardX {
   border-radius: 18px;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.85);
   box-shadow: var(--shadow-sm);
-  padding: 14px 14px;
+  padding: 14px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -467,6 +470,81 @@ a {
   color: rgba(11, 18, 32, 0.55);
 }
 
+/* -------- Multi uploader thumbnails -------- */
+.uplBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+.uplCount {
+  font-weight: 850;
+  color: rgba(11, 18, 32, 0.72);
+}
+.uplClear {
+  padding: 0.55rem 0.8rem;
+  border-radius: 14px;
+}
+
+.uplGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+@media (max-width: 576px) {
+  .uplGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.uplItem {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  aspect-ratio: 1 / 1;
+}
+.uplItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.uplRm {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.88);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.uplRm i {
+  opacity: 0.85;
+}
+
+.uplBadge {
+  position: absolute;
+  left: 6px;
+  bottom: 6px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-weight: 850;
+  font-size: 12px;
+}
+
 /* ---------------- Map cards ---------------- */
 .mapCard {
   border-radius: var(--r-lg);
@@ -559,54 +637,46 @@ a {
   font-weight: 750;
 }
 
-/* ---------------- Footer ---------------- */
-.footX {
-  padding: 24px 0;
-  border-top: 1px solid var(--line);
-}
-.footX__inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  color: rgba(11, 18, 32, 0.6);
-  font-weight: 750;
-}
-.footX__links {
-  display: flex;
-  gap: 14px;
-}
-.footX__links a {
-  text-decoration: none;
-}
-.footX__links a:hover {
-  text-decoration: underline;
-}
-
-/* ---------------- Mobile CTA ---------------- */
-.mcta {
-  position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-  background: rgba(255, 255, 255, 0.86);
-  border: 1px solid var(--line);
-  border-radius: 18px;
-  padding: 10px;
-  box-shadow: var(--shadow-lg);
-}
-body {
-  padding-bottom: 84px;
-}
-
-@media (min-width: 992px) {
-  .mcta {
-    display: none;
+/* placeholder opzionali (se usi iframe che a volte non carica) */
+@media (max-width: 576px) {
+  .mapPlaceholder {
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 14px;
+    padding: 18px;
+    text-align: center;
   }
-  body {
-    padding-bottom: 0;
+  .mapCard__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 320px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.02);
+    text-align: center;
+    padding: 16px;
+  }
+  .mapCard__phInner {
+    max-width: 260px;
+  }
+  .mapCard__phTitle {
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .mapCard__phText {
+    opacity: 0.8;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
   }
 }
+
+/* ---------------- Extra UI helpers ---------------- */
 .docs .cardX p {
   opacity: 0.9;
 }
@@ -638,6 +708,8 @@ body {
 .small {
   font-size: 0.9rem;
 }
+
+/* FAQ (accordion) */
 .faqList {
   max-width: 860px;
   margin: 0 auto;
@@ -653,7 +725,7 @@ body {
 
 .faqAcc .accordion-button {
   font-weight: 600;
-  padding: 18px 18px;
+  padding: 18px;
   background: #fff;
   box-shadow: none;
 }
@@ -675,175 +747,170 @@ body {
 .faqAcc .accordion-button::after {
   opacity: 0.65;
 }
-/* -------- Multi uploader thumbnails -------- */
-.uplBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-top: 10px;
-}
-.uplCount {
-  font-weight: 850;
-  color: rgba(11, 18, 32, 0.72);
-}
-.uplClear {
-  padding: 0.55rem 0.8rem;
-  border-radius: 14px;
+
+/* ---------------- Mobile CTA ---------------- */
+.mcta {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: var(--shadow-lg);
 }
 
-.uplGrid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 10px;
+/* spazio per la barra su mobile */
+body {
+  padding-bottom: 84px;
 }
-@media (max-width: 576px) {
-  .uplGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media (min-width: 992px) {
+  .mcta {
+    display: none;
+  }
+  body {
+    padding-bottom: 0;
   }
 }
 
-.uplItem {
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  background: #fff;
-  box-shadow: var(--shadow-sm);
-  aspect-ratio: 1 / 1;
-}
-.uplItem img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+/* ---------------- Footer (Premium Studio) ---------------- */
+.footX {
+  padding: 22px 0;
+  margin-top: 80px;
+  border-top: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
 }
 
-.uplRm {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  width: 34px;
-  height: 34px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.88);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  pointer-events: auto;
-}
-.uplRm i {
-  opacity: 0.85;
+.footX__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  color: rgba(11, 18, 32, 0.62);
+  font-weight: 750;
 }
 
-.uplBadge {
-  position: absolute;
-  left: 6px;
-  bottom: 6px;
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
+.footX__left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.footX__copy {
+  font-size: 0.95rem;
+  color: rgba(11, 18, 32, 0.7);
+  letter-spacing: -0.2px;
+}
+
+.footX__sub {
+  font-size: 0.82rem;
+  color: rgba(11, 18, 32, 0.52);
+}
+
+.footX__links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.footX__links a {
+  text-decoration: none;
+  color: rgba(11, 18, 32, 0.62);
   font-weight: 850;
-  font-size: 12px;
+  font-size: 0.9rem;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  transition:
+    transform 0.12s ease,
+    background 0.12s ease,
+    border-color 0.12s ease;
 }
-/* ===== Footer mobile fix ===== */
+.footX__links a:hover {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--line);
+  transform: translateY(-1px);
+}
+
+/* micro-links */
+.footX__seo {
+  margin-top: 6px;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  opacity: 0.5;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.footX__seo a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(11, 18, 32, 0.35);
+}
+.footX__seo a:hover {
+  opacity: 0.9;
+}
+
+/* variante “micro” separata (se la usi nel markup) */
+.footMicroText,
+.footMicro {
+  font-size: 10px;
+  letter-spacing: 0.3px;
+  color: #9a9a9a;
+  opacity: 0.7;
+}
+.footMicroText a,
+.footMicro a {
+  color: inherit;
+  text-decoration: none;
+  transition:
+    color 0.15s ease,
+    opacity 0.15s ease;
+}
+.footMicroText a:hover,
+.footMicro a:hover {
+  color: #000;
+  opacity: 0.95;
+}
+.footMicroText {
+  display: flex;
+  gap: 12px;
+}
+.footMicro {
+  text-align: center;
+  margin-top: 14px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+}
+.footMicro span {
+  margin: 0 6px;
+}
+
+/* Mobile footer */
 @media (max-width: 576px) {
   .footX {
-    padding: 18px 0 24px;
+    padding: 18px 0 22px;
   }
-
   .footX__inner {
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 10px;
   }
-
-  .footX__copy {
-    font-size: 0.95rem;
-    color: rgba(11, 18, 32, 0.62);
-  }
-
   .footX__links {
-    flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
   }
-
   .footX__links a {
-    display: inline-flex;
-    align-items: center;
-    padding: 8px 12px;
-    border-radius: 999px;
-    border: 1px solid var(--line);
     background: rgba(255, 255, 255, 0.85);
+    border-color: var(--line);
     box-shadow: var(--shadow-sm);
-    font-weight: 800;
     font-size: 0.92rem;
-    text-decoration: none;
   }
-
-  .footX__links a:hover {
-    text-decoration: none;
-    transform: translateY(-1px);
-  }
-  .mapPlaceholder {
-    height: 320px;
-    display: flex;
-    flex-direction: column;
+  .footX__seo {
     justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 14px;
-    padding: 18px;
-    text-align: center;
   }
-  .mapCard__placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 320px; /* deve combaciare con la tua altezza iframe */
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 14px;
-    background: rgba(0, 0, 0, 0.02);
-    text-align: center;
-    padding: 16px;
-  }
-
-  .mapCard__phInner {
-    max-width: 260px;
-  }
-  .mapCard__phTitle {
-    font-weight: 700;
-    margin-bottom: 6px;
-  }
-  .mapCard__phText {
-    opacity: 0.8;
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-  }
-}
-.footX__seo {
-  margin-top: 6px;
-  font-size: 0.68rem;
-  line-height: 1.2;
-  opacity: 0.45;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.footX__seo a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px dotted rgba(255, 255, 255, 0.25);
-  transition: opacity 0.15s ease;
-}
-
-.footX__seo a:hover {
-  opacity: 0.9;
 }

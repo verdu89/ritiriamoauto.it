@@ -94,8 +94,10 @@
             <div class="legalCard" style="margin-top: 10px">
               <div class="legalMiniTitle">Fornitore tecnico</div>
               <div class="legalMiniText">
-                <strong>Luca Verdura</strong> — Contatto:
-                <strong>verdu89@gmail.com</strong>
+                Il sistema richieste è fornito da un soggetto terzo come
+                servizio tecnico. Per segnalazioni relative al funzionamento del
+                modulo, contattare il Titolare ai recapiti indicati nelle pagine
+                informative (Privacy/Contatti).
               </div>
             </div>
           </section>
@@ -152,31 +154,49 @@
             </p>
             <p class="muted"><em>Ultimo aggiornamento: 16/02/2026</em></p>
           </section>
-
-          <footer class="legalFoot">
-            <div>© <span id="y"></span> Ritiriamo Auto</div>
-            <div class="legalFoot__links">
-              <a href="privacy.html">Privacy</a>
-              <a href="cookie.html">Cookie</a>
-              <a
-                href="#"
-                onclick="
-                  window.klaro
-                    ? klaro.show()
-                    : alert(
-                        'Preferenze cookie non disponibili. Ricarica la pagina.',
-                      );
-                  return false;
-                "
-              >
-                Preferenze cookie
-              </a>
-              <a href="licenza.html" aria-current="page">Licenza</a>
-            </div>
-          </footer>
         </article>
       </section>
     </main>
+
+    <!-- FOOTER -->
+    <footer class="footX">
+      <div class="container footX__inner">
+        <div class="footX__brand">
+          <div class="footX__copy">© <span id="y"></span> Ritiriamo Auto</div>
+          <div class="footX__sub">Valutazione auto usate in Sardegna</div>
+        </div>
+
+        <nav class="footX__legal footMicroText" aria-label="Link legali">
+          <a href="privacy.html">Privacy</a>
+          <a href="cookie.html">Cookie</a>
+          <a
+            href="#"
+            onclick="
+              window.klaro ? klaro.show() : alert('Ricarica la pagina');
+              return false;
+            "
+            >Preferenze</a
+          >
+          <a href="licenza.html">Licenza</a>
+        </nav>
+      </div>
+
+      <nav class="footMicro" aria-label="Link di servizio">
+        <a href="ritiro-auto-cagliari.html">Ritiro auto Cagliari</a>
+        <span>·</span>
+        <a href="rottamazione-auto-cagliari.html">Rottamazione auto Cagliari</a>
+        <span>·</span>
+        <a href="ritiro-auto-sardegna.html">Ritiro auto Sardegna</a>
+        <span>·</span>
+        <a href="index.html#come">Come funziona</a>
+        <span>·</span>
+        <a href="index.html#faq">FAQ</a>
+        <span>·</span>
+        <a href="index.html#form">Richiesta</a>
+        <span>·</span>
+        <a href="index.html#sedi">Sedi</a>
+      </nav>
+    </footer>
 
     <script>
       const y = document.getElementById("y");

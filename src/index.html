@@ -1090,30 +1090,51 @@
       <!-- FOOTER -->
       <footer class="footX">
         <div class="container footX__inner">
-          <div class="footX__copy">© <span id="y"></span> Ritiriamo Auto</div>
+          <div class="footX__brand">
+            <div class="footX__copy">© <span id="y"></span> Ritiriamo Auto</div>
+            <div class="footX__sub">Valutazione auto usate in Sardegna</div>
+          </div>
 
-          <div class="footX__links">
+          <!-- legali -->
+          <nav class="footX__legal footMicroText">
             <a href="privacy.html">Privacy</a>
             <a href="cookie.html">Cookie</a>
             <a
               href="#"
               onclick="
-                klaro.show();
+                window.klaro ? klaro.show() : alert('Ricarica la pagina');
                 return false;
               "
-              >Preferenze cookie</a
+              >Preferenze</a
             >
-            <a href="licenza.html">Licenza sistema richieste</a>
-          </div>
-          <div class="footX__seo">
-            <a href="ritiro-auto-cagliari.html">Ritiro auto Cagliari</a>
-            <a href="rottamazione-auto-cagliari.html"
-              >Rottamazione auto Cagliari</a
-            >
-            <a href="ritiro-auto-sardegna.html">Ritiro auto Sardegna</a>
-          </div>
+            <a href="licenza.html">Licenza</a>
+          </nav>
         </div>
+
+        <!-- SEO discreto -->
+        <nav class="footMicro">
+          <a href="ritiro-auto-cagliari.html">Ritiro auto Cagliari</a>
+          <span>·</span>
+          <a href="rottamazione-auto-cagliari.html"
+            >Rottamazione auto Cagliari</a
+          >
+          <span>·</span>
+          <a href="ritiro-auto-sardegna.html">Ritiro auto Sardegna</a>
+          <span>·</span>
+          <a href="#come">Come funziona</a>
+          <span>·</span>
+          <a href="#faq">FAQ</a>
+          <span>·</span>
+          <a href="#form">Richiesta</a>
+          <span>·</span>
+          <a href="#sedi">Sedi</a>
+        </nav>
       </footer>
+
+      <script>
+        const y = document.getElementById("y");
+        if (y) y.textContent = new Date().getFullYear();
+      </script>
     </main>
 
     <script>
