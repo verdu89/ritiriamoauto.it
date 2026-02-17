@@ -164,6 +164,17 @@ document.addEventListener("DOMContentLoaded", () => {
     return s.replace(/[^\d+]/g, "");
   }
 
+  function normalizeEmail(raw) {
+    return String(raw || "")
+      .trim()
+      .toLowerCase();
+  }
+
+  function isValidEmail(email) {
+    // validazione leggera (HTML5 fa già il grosso)
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(String(email || "").trim());
+  }
+
   function slug(s) {
     return String(s || "")
       .toLowerCase()
@@ -221,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---------- Queue (solo senza foto) ----------
-  const QUEUE_KEY = "ritiriamoauto_lead_queue_v3";
+  const QUEUE_KEY = "ritiriamoauto_lead_queue_v4_email";
 
   function loadQueue() {
     try {
@@ -357,6 +368,14 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // ✅ EMAIL (nuovo campo)
+    const email = normalizeEmail(fd.get("email"));
+    if (!email || !isValidEmail(email)) {
+      alert("Inserisci un'email valida.");
+      isSubmitting = false;
+      return;
+    }
+
     // ✅ validazione numerica (ora obbligatori)
     const yearNum = Number(String(fd.get("year") || "").trim());
     const kmNum = Number(String(fd.get("km") || "").trim());
@@ -379,10 +398,11 @@ document.addEventListener("DOMContentLoaded", () => {
         ? "ritiriamoauto.it"
         : window.location.hostname.replace(/^www\./, "").split(":")[0];
 
-    // ✅ payload aggiornato (brand/model/fuel obbligatori)
+    // ✅ payload aggiornato (aggiunto email)
     const payload = {
       name: String(fd.get("name") || "").trim(),
       phone,
+      email,
       city: String(fd.get("city") || "").trim(),
       brand: String(fd.get("brand") || "").trim(),
       model: String(fd.get("model") || "").trim(),
